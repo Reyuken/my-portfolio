@@ -18,8 +18,8 @@ export default function Box(props) {
         {...props}
         scale={active ? 1 : 0.5}
         // onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => (setHover(true), setActive(!active))}
-        onPointerOut={(event) => (setHover(false), setActive(!active))}
+        onPointerOver={(event) => (event.stopPropagation(), setHover(true), setActive(!active))}
+        onPointerOut={(event) => (event.stopPropagation(), setHover(false), setActive(!active))}
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
