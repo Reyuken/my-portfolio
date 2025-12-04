@@ -3,11 +3,12 @@
 import React, { useRef, useState } from "react";
 import {useFrame } from "@react-three/fiber";
 
-export function Box({position, link}) {
+export function Box({position, link,  index}) {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
 
   const handleClick = () => {
+    console.log("Clicked box number:", index);
     if (link) {
       console.log("Box link:", link);
       window.open(link, "_blank");
@@ -20,15 +21,20 @@ export function Box({position, link}) {
     <group ref={meshRef} position={position}>
       <mesh
         scale={hovered ? 1 : 0.5}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleClick();      // <-- NOW it's used
-          }}
-        onPointerOver={(event) => (event.stopPropagation(), setHover(true))}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClick();      
+        }}
+        onPointerOver={(event) => {
+          event.stopPropagation(); 
+          if (link) {
+            setHover(true);
+          };
+        }}
         onPointerOut={(event) => (event.stopPropagation(), setHover(false))}
       >
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+        <meshStandardMaterial color={link? (hovered ? "hotpink": "blue" ): "orange"} />
       </mesh>
     </group>
   );
@@ -37,12 +43,12 @@ export function Box({position, link}) {
 export function Cube(){
   const positions = [
   //front
-  [-1, 0, 1],
-  [0, 0, 1],
-  [1, 0, 1],
   [-1, 1, 1],
   [0, 1, 1],
   [1, 1, 1],
+  [-1, 0, 1],
+  [0, 0, 1],
+  [1, 0, 1],
   [-1, -1, 1],
   [0, -1, 1],
   [1, -1, 1],
@@ -69,16 +75,39 @@ export function Cube(){
   //top
   [0, 1, 0],
   ];
-  const links = [
-    "https://google.com",
-    "https://github.com",
-    "https://nextjs.org",
-    // ...
+  const links = [      
+    "https://nextjs.org", //0
+    "https://google.com", //1
+    "https://github.com", //2
+    "", //3
+    "", //4
+    "", //5
+    "", //6
+    "", //7
+    "", //8
+    "", //9
+    "", //10
+    "", //11
+    "", //12
+    "", //13
+    "", //14
+    "", //15
+    "", //16
+    "", //17
+    "", //18
+    "", //19
+    "", //20
+    "", //21
+    "", //22
+    "", //23
+    "", //24
+    "", //25
+    "", //26
   ];
   return (
     <group position={[0, 0, 0]}>
       {positions.map((pos, i) => (
-        <Box key={i} position={pos} link={links[i]}/>
+        <Box key={i} position={pos} link={links[i]} index={i}/>
       ))}
     </group>
   );
