@@ -3,17 +3,27 @@
 import React, { useRef, useState } from "react";
 import {useFrame } from "@react-three/fiber";
 
-export function Box(props) {
+export function Box({position, link}) {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
+
+  const handleClick = () => {
+    if (link) {
+      console.log("Box link:", link);
+      window.open(link, "_blank");
+    } else {
+      console.log("No link assigned");
+    }
+  };
 
   return (
-    <group ref={meshRef} position={[0, 0, 0]}>
+    <group ref={meshRef} position={position}>
       <mesh
-        {...props}
         scale={hovered ? 1 : 0.5}
-        // onClick={(event) => setActive(!active)}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleClick();      // <-- NOW it's used
+          }}
         onPointerOver={(event) => (event.stopPropagation(), setHover(true))}
         onPointerOut={(event) => (event.stopPropagation(), setHover(false))}
       >
@@ -59,11 +69,16 @@ export function Cube(){
   //top
   [0, 1, 0],
   ];
-
+  const links = [
+    "https://google.com",
+    "https://github.com",
+    "https://nextjs.org",
+    // ...
+  ];
   return (
     <group position={[0, 0, 0]}>
       {positions.map((pos, i) => (
-        <Box key={i} position={pos} />
+        <Box key={i} position={pos} link={links[i]}/>
       ))}
     </group>
   );
