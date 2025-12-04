@@ -7,7 +7,7 @@ export function Box(props) {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
-  useFrame((state, delta) => (meshRef.current.rotation.y += 0.003));
+
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
       <mesh
@@ -75,6 +75,14 @@ export default function RotatableCube() {
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);
   const DRAG_DURATION = 500; // milliseconds
+
+    useFrame(() => {
+    if (!dragging && groupRef.current) {
+      // Auto-rotate when not dragging
+      groupRef.current.rotation.y += 0.005; // horizontal rotation speed
+      groupRef.current.rotation.x += 0.002; // vertical rotation speed
+    }
+  });
   return (
     <group
       ref={groupRef}
