@@ -80,7 +80,7 @@ export default function RotatableCube() {
     if (!dragging && groupRef.current) {
       // Auto-rotate when not dragging
       groupRef.current.rotation.y += 0.005; // horizontal rotation speed
-      groupRef.current.rotation.x += 0.002; // vertical rotation speed
+      // groupRef.current.rotation.x += 0.002; // vertical rotation speed
     }
   });
   return (
