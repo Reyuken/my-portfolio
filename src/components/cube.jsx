@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import {useFrame } from "@react-three/fiber";
 
-export default function Box(props) {
+export function Box(props) {
   // This reference will give us direct access to the mesh
   const meshRef = useRef();
   // Set up state for the hovered and active state
@@ -28,4 +28,47 @@ export default function Box(props) {
   );
 }
 
+export default function Cube(){
+  const positions = [
+  //front
+  [-1, 0, 1],
+  [0, 0, 1],
+  [1, 0, 1],
+  [-1, 1, 1],
+  [0, 1, 1],
+  [1, 1, 1],
+  [-1, -1, 1],
+  [0, -1, 1],
+  [1, -1, 1],
+  //back
+  [-1, 0, -1],
+  [0, 0, -1],
+  [1, 0, -1],
+  [-1, 1, -1],
+  [0, 1, -1],
+  [1, 1, -1],
+  [-1, -1, -1],
+  [0, -1, -1],
+  [1, -1, -1],
+  //left
+  [-1, -1, 0],
+  [-1, 0, 0],
+  [-1, 1, 0],
+  //right
+  [1, -1, 0],
+  [1, 0, 0],
+  [1, 1, 0],
+  //bottom
+  [0, -1, 0],
+  //top
+  [0, 1, 0],
+  ];
 
+  return (
+    <group position={[0, -2, 0]}>
+      {positions.map((pos, i) => (
+        <Box key={i} position={pos} />
+      ))}
+    </group>
+  );
+}
