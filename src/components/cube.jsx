@@ -74,6 +74,7 @@ export default function RotatableCube() {
   const [dragging, setDragging] = useState(false);
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);
+  const DRAG_DURATION = 500; // milliseconds
   return (
     <group
       ref={groupRef}
@@ -83,6 +84,9 @@ export default function RotatableCube() {
         setDragging(true);
         setLastMouseX(e.clientX);
         setLastMouseY(e.clientY);
+        setTimeout(() => {
+          setDragging(false);
+        }, DRAG_DURATION);
       }}
       onPointerUp={() => setDragging(false)}
       onPointerMove={(e) => {
