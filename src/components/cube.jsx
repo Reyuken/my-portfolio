@@ -147,7 +147,7 @@ export default function RotatableCube() {
   return (
     <group
       ref={groupRef}
-      position={[0, 4, 0]}
+      position={[0, 2, 0]}
       onPointerDown={(e) => {
         e.stopPropagation();
         setDragging(true);
