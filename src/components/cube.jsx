@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import {useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
+import PreviewOverlay3D from "@/components/Screen"
 
 export function Box({position, link, index, setPreviewLink}) {
   const meshRef = useRef();
@@ -42,7 +43,7 @@ export function Box({position, link, index, setPreviewLink}) {
   );
 }
 
-export function Cube(){
+export function Cube({ setPreviewLink }){
   const positions = [
   //front
   [-1, 1, 1],
@@ -107,8 +108,6 @@ export function Cube(){
     "", //26
   ];
 
- const [previewLink, setPreviewLink] = useState(null);
-
   return (
     <>
     <group position={[0, 0, 0]}>
@@ -117,15 +116,6 @@ export function Cube(){
       ))}
     </group>
 
-    {previewLink && (
-      <Html position={[0, 4, 0]}> {/* from @react-three/drei */}
-        <div style={{ background: "white", padding: "0.5em", borderRadius: "4px" }}>
-          Preview: {previewLink}
-          <button onClick={() => window.open(previewLink, "_blank")}>Go</button>
-          <button onClick={() => setPreviewLink(null)}>Close</button>
-        </div>
-      </Html>
-    )}
     </>
   );
 }
@@ -135,6 +125,8 @@ export default function RotatableCube() {
   const [dragging, setDragging] = useState(false);
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);
+  const [previewLink, setPreviewLink] = useState(null);
+
   const DRAG_DURATION = 500; // milliseconds
 
     useFrame(() => {
@@ -145,6 +137,7 @@ export default function RotatableCube() {
     }
   });
   return (
+    <>
     <group
       ref={groupRef}
       position={[0, 2, 0]}
@@ -175,10 +168,18 @@ export default function RotatableCube() {
         <boxGeometry  args={[5, 5, 5]} /> {/* size big enough to cover all cubes */}
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
-      <group>
-        <Cube />
-      </group>
-      
+        <Cube setPreviewLink={setPreviewLink} />
+            {/* 3D overlay */}
+
     </group>
+      {previewLink && (
+        <PreviewOverlay3D
+          previewLink={previewLink}
+          setPreviewLink={setPreviewLink}
+          position={[-6, 19.5, -22.687]} // adjust position of preview screen here
+          scale={6}
+        />
+      )}
+    </>
   );
 }

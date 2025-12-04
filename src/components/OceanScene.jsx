@@ -7,6 +7,7 @@ import { OrbitControls, Sky } from "@react-three/drei";
 import { Water } from "three-stdlib";
 import RotatableCube from "@/components/cube";
 import TvGLB from "@/components/Television";
+import PreviewOverlay3D from "@/components/Screen";
 
 extend({ Water });
 
@@ -40,29 +41,39 @@ function Ocean() {
 
 
 export default function OceanScene() {
+  const [previewLink, setPreviewLink] = React.useState(null);
+
   return (
-    <Canvas camera={{ position: [0, 10, 20], fov: 55, near: 1, far: 20000 }}>
+    <Canvas camera={{ position: [0, 1, 10], fov: 55, near: 1, far: 20000 }}>
       <pointLight decay={0} position={[100, 100, 100]} />
       <pointLight decay={0.5} position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
-        <RotatableCube/>
+        <RotatableCube setPreviewLink={setPreviewLink} />
+
         <TvGLB
           url="/models/tv.glb"
           position={[0, -4, -40]}
           scale={90}
           screenText="Now Playing..."
         />
+        {previewLink && (
+          <PreviewOverlay3D
+            previewLink={previewLink}
+            setPreviewLink={setPreviewLink}
+            // position={[0, 100, 80]}            //adjust them in rotatingcube function 
+            // scale={1}                         //adjust them in rotatingcube function 
+          />
+        )}
 
       </Suspense>
       <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} />
       <OrbitControls  
-        // minPolarAngle={Math.PI / 4}   // lowest vertical angle (tilt up)
-        // maxPolarAngle={Math.PI / 2}   // highest vertical angle (tilt down)
-        // minAzimuthAngle={-Math.PI / 4} // left limit
-        // maxAzimuthAngle={Math.PI / 4}  // right limit
-        // enableZoom={true}             // allow zoom
-        // enablePan={false}             // disable panning
+        minPolarAngle={Math.PI / 4}   // lowest vertical angle (tilt up)
+        maxPolarAngle={Math.PI / 1}   // highest vertical angle (tilt down)
+        minAzimuthAngle={-Math.PI / 4} // left limit
+        maxAzimuthAngle={Math.PI / 4}  // right limit
+        enableZoom={true} 
         target={[0, 5, 0]}
         />
     </Canvas>

@@ -7,7 +7,7 @@ import { Text } from "@react-three/drei";
 
 export default function TvGLB({
   url = "/models/tv.glb",
-  scale = 0.5,
+  scale = 0.2,
   screenText = "Hello 3D!",
   position = [0, 0, 0]
 }) {
@@ -21,9 +21,9 @@ export default function TvGLB({
 
       {/* Screen text */}
       <Text
-        position={[0,0.3,0.2]} // Adjust to your GLB screen position
+        position={[-0.15,0.38,0.2]} // Adjust to your GLB screen position
         rotation={[0, 0, 0]}
-        fontSize={0.001 * scale}    // scale font with model
+        fontSize={0.0002 * scale}    // scale font with model
         color="white"
         anchorX="center"
         anchorY="middle"
