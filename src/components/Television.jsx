@@ -1,10 +1,35 @@
-import { useLoader } from "@react-three/fiber";
-import { OBJLoader } from "three-stdlib";
+"use client";
 
-export default function Tv({ url = "/models/tv.obj", scale = 0.01 }) {
-  const obj = useLoader(OBJLoader, url);
+import React from "react";
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three-stdlib";
+import { Text } from "@react-three/drei";
+
+export default function TvGLB({
+  url = "/models/tv.glb",
+  scale = 0.5,
+  screenText = "Hello 3D!",
+  position = [0, 0, 0]
+}) {
+  // Load the GLB/GLTF model
+  const gltf = useLoader(GLTFLoader, url);
 
   return (
-    <primitive object={obj} scale={scale} />
+    <group position={position} scale={[scale, scale, scale]}>
+      {/* The TV model */}
+      <primitive object={gltf.scene} />
+
+      {/* Screen text */}
+      <Text
+        position={[0,0.3,0.2]} // Adjust to your GLB screen position
+        rotation={[0, 0, 0]}
+        fontSize={0.001 * scale}    // scale font with model
+        color="white"
+        anchorX="center"
+        anchorY="middle"
+      >
+        {screenText}
+      </Text>
+    </group>
   );
 }

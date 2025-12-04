@@ -6,7 +6,7 @@ import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fibe
 import { OrbitControls, Sky } from "@react-three/drei";
 import { Water } from "three-stdlib";
 import RotatableCube from "@/components/cube";
-import Tv from "@/components/Television";
+import TvGLB from "@/components/Television";
 
 extend({ Water });
 
@@ -47,7 +47,13 @@ export default function OceanScene() {
       <Suspense fallback={null}>
         <Ocean />
         <RotatableCube/>
-        <Tv/>
+        <TvGLB
+          url="/models/tv.glb"
+          position={[0, -4, -40]}
+          scale={90}
+          screenText="Now Playing..."
+        />
+
       </Suspense>
       <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} />
       <OrbitControls  
