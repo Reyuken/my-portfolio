@@ -2,8 +2,9 @@
 
 import React, { useRef, useState } from "react";
 import {useFrame } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
 
-export function Box({position, link,  index}) {
+export function Box({position, link, index, setPreviewLink}) {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
 
@@ -11,7 +12,8 @@ export function Box({position, link,  index}) {
     console.log("Clicked box number:", index);
     if (link) {
       console.log("Box link:", link);
-      window.open(link, "_blank");
+      // window.open(link, "_blank");
+      setPreviewLink(link);
     } else {
       console.log("No link assigned");
     }
@@ -104,12 +106,27 @@ export function Cube(){
     "", //25
     "", //26
   ];
+
+ const [previewLink, setPreviewLink] = useState(null);
+
   return (
+    <>
     <group position={[0, 0, 0]}>
       {positions.map((pos, i) => (
-        <Box key={i} position={pos} link={links[i]} index={i}/>
+        <Box key={i} position={pos} link={links[i]} index={i} setPreviewLink={setPreviewLink} />
       ))}
     </group>
+
+    {previewLink && (
+      <Html position={[0, 4, 0]}> {/* from @react-three/drei */}
+        <div style={{ background: "white", padding: "0.5em", borderRadius: "4px" }}>
+          Preview: {previewLink}
+          <button onClick={() => window.open(previewLink, "_blank")}>Go</button>
+          <button onClick={() => setPreviewLink(null)}>Close</button>
+        </div>
+      </Html>
+    )}
+    </>
   );
 }
 
@@ -130,7 +147,7 @@ export default function RotatableCube() {
   return (
     <group
       ref={groupRef}
-      position={[0, -2, 0]}
+      position={[0, 4, 0]}
       onPointerDown={(e) => {
         e.stopPropagation();
         setDragging(true);
@@ -155,7 +172,7 @@ export default function RotatableCube() {
       }}
     >
       <mesh position={[0,0,0]} visible={true}>
-        <boxGeometry  args={[3, 3, 3]} /> {/* size big enough to cover all cubes */}
+        <boxGeometry  args={[5, 5, 5]} /> {/* size big enough to cover all cubes */}
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
       <group>
