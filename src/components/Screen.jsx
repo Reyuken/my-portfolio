@@ -10,49 +10,52 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
     // console.log(previewImgage);
   return ( 
     <group position={position} scale={[scale, scale, scale]}>
-      <mesh>
-        <planeGeometry args={[5.6, 4.3]} />
-        <meshStandardMaterial color="white" side={2} />
-      </mesh>
-      
-      <mesh position={[-0.9, 1, 0.01]}>
-        <planeGeometry args={[3.6, 2]} />
-        <meshBasicMaterial map={previewTexture} />
-      </mesh>
+      <group position={[0.05, -0.02, 0.01]}>
+        <mesh >
+          <planeGeometry args={[6.0, 4.66]} />
+          <meshStandardMaterial color="white" side={2} />
+        </mesh>
+        
+        <mesh position={[-0.9, 1, 0.01]}>
+          <planeGeometry args={[3.6, 2]} />
+          <meshBasicMaterial map={previewTexture} />
+        </mesh>
 
-      <Text
-      position={[-2.7, 0, 0.01]}
-      fontSize={0.15}
-      color="black"
-      anchorX="left"
-      anchorY="top"
-      maxWidth={5}
-      lineHeight={1.2}
-      >
-      {`Description:\n${previewLink.description}\n\nTech Stack:\n${previewLink.techStack.join(" • ")}\n\nFeatures:\n${previewLink.features.join(", ")}`}
-      </Text>
-
-      <Text
-        position={[-2.7, -2, 0.01]}
+        <Text
+        position={[-2.7, 0, 0.01]}
         fontSize={0.15}
-        color="blue"
+        color="black"
         anchorX="left"
-        anchorY="middle"
-        onClick={() => window.open(previewLink.site, "_blank")}
-      >
-        {previewLink.site}
-      </Text>
+        anchorY="top"
+        maxWidth={5}
+        lineHeight={1.2}
+        >
+        {`Description:\n${previewLink.description}\n\nTech Stack:\n${previewLink.techStack.join(" • ")}\n\nFeatures:\n${previewLink.features.join(", ")}`}
+        </Text>
 
-      <Text
-        position={[2.3, -1.9, 0.01]}
-        fontSize={0.3}
-        color="red"
-        anchorX="center"
-        anchorY="middle"
-        onClick={() => setPreviewLink(null)}
-      >
-        Close
-      </Text>
+        <Text
+          position={[-2.7, -2, 0.01]}
+          fontSize={0.15}
+          color="blue"
+          anchorX="left"
+          anchorY="middle"
+          onClick={() => window.open(previewLink.site, "_blank")}
+        >
+          {previewLink.site}
+        </Text>
+
+        <Text
+          position={[2.3, -1.9, 0.01]}
+          fontSize={0.3}
+          color="red"
+          anchorX="center"
+          anchorY="middle"
+          onClick={() => setPreviewLink(null)}
+        >
+          Close
+        </Text>
+      </group>
+      
     </group>
   );
 }

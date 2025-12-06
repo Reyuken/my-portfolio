@@ -4,11 +4,11 @@ import React from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three-stdlib";
 import { Text } from "@react-three/drei";
+import TvScreenStatic from "@/components/Static";
 
 export default function TvGLB({
   url = "/models/tv.glb",
   scale = 0.2,
-  screenText = "Hello 3D!",
   position = [0, 0, 0]
 }) {
   // Load the GLB/GLTF model
@@ -18,18 +18,14 @@ export default function TvGLB({
     <group position={position} scale={[scale, scale, scale]}>
       {/* The TV model */}
       <primitive object={gltf.scene} />
+      <TvScreenStatic
+        position={[-0.064, 0.26, 0.1924]}
+        scale={0.1}
+        width={4}
+        height={3.1}
+        overlayText="No Signal..."
+      />
 
-      {/* Screen text */}
-      <Text
-        position={[-0.15,0.38,0.2]} // Adjust to your GLB screen position
-        rotation={[0, 0, 0]}
-        fontSize={0.0002 * scale}    // scale font with model
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {screenText}
-      </Text>
     </group>
   );
 }

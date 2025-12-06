@@ -147,7 +147,7 @@ export function Cube({ setPreviewLink }){
     },
     {
       site: "https://reyuken.github.io/project-weather-app/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-weather-app/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-weather-app/?t=123456789",
       description: "Displays real-time weather data based on city search.",
       techStack: ["HTML", "CSS", "JavaScript", "Weather API"],
       features: [
