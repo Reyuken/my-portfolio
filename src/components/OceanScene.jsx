@@ -55,7 +55,7 @@ export default function OceanScene() {
           url="/models/tv.glb"
           position={[0, -4, -40]}
           scale={90}
-          screenText="Now Playing..."
+          screenText=""
         />
         {previewLink && (
           <PreviewOverlay3D
@@ -74,6 +74,7 @@ export default function OceanScene() {
         minAzimuthAngle={-Math.PI / 4} // left limit
         maxAzimuthAngle={Math.PI / 4}  // right limit
         enableZoom={true} 
+        enablePan={false}
         target={[0, 5, 0]}
         />
     </Canvas>

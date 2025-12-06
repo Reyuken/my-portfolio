@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect} from "react";
 import {useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import {  useTexture } from "@react-three/drei";
 import PreviewOverlay3D from "@/components/Screen"
 
 export function Box({position, link, index, setPreviewLink}) {
@@ -11,9 +11,8 @@ export function Box({position, link, index, setPreviewLink}) {
 
   const handleClick = () => {
     console.log("Clicked box number:", index);
-    if (link) {
+    if (link.site) {
       console.log("Box link:", link);
-      // window.open(link, "_blank");
       setPreviewLink(link);
     } else {
       console.log("No link assigned");
@@ -78,15 +77,97 @@ export function Cube({ setPreviewLink }){
   //top
   [0, 1, 0],
   ];
-  const links = [      
-    "https://nextjs.org", //0
-    "https://google.com", //1
-    "https://github.com", //2
-    "", //3
-    "", //4
-    "", //5
-    "", //6
-    "", //7
+  
+  const links = [
+    {
+      site: "https://reyuken.github.io/project-calculator/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-calculator/",
+      description: "Responsive calculator for basic arithmetic operations.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Add, subtract, multiply, divide",
+        "Clear and backspace functions",
+        "Keyboard support"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-etch-a-sketch/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-etch-a-sketch/",
+      description: "Interactive drawing grid where users can sketch using hover.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Adjustable grid size",
+        "Color and erase modes",
+        "Interactive drawing"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-tic-tac-toe/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-tic-tac-toe/",
+      description: "Classic 3x3 Tic Tac Toe game playable against another player.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "2-player mode",
+        "Win detection",
+        "Reset game"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-admin-dashboard/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-admin-dashboard/",
+      description: "Static admin dashboard layout with widgets and sidebar.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Cards and statistics",
+        "Sidebar navigation",
+        "Dashboard layout"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-sign-up-form/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-sign-up-form/",
+      description: "Modern sign-up form with validation for user registration.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Live form validation",
+        "Error messaging",
+        "Responsive design"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-restaurant-page/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-restaurant-page/",
+      description: "Single-page restaurant website built with modular JavaScript.",
+      techStack: ["HTML", "CSS", "JavaScript (ES6 Modules)"],
+      features: [
+        "Home, Menu, and Contact sections",
+        "Modular JavaScript architecture",
+        "Fully responsive"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-weather-app/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-weather-app/",
+      description: "Displays real-time weather data based on city search.",
+      techStack: ["HTML", "CSS", "JavaScript", "Weather API"],
+      features: [
+        "Current temperature and conditions",
+        "Search by city",
+        "Responsive UI"
+      ]
+    },
+    {
+      site: "https://reyuken.github.io/project-library/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-library/?t=123456789",
+      description: "A simple digital library for storing books and managing collections.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Add, remove, and edit books",
+        "Mark books as read/unread",
+        "Store data locally"
+      ]
+    },
+
     "", //8
     "", //9
     "", //10
@@ -107,7 +188,11 @@ export function Cube({ setPreviewLink }){
     "", //25
     "", //26
   ];
-
+  useEffect(() => {
+    links.forEach(link => {
+      if (link.image) useTexture.preload(link.image);
+    });
+  }, []);
   return (
     <>
     <group position={[0, 0, 0]}>
