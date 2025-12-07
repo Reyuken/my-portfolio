@@ -10,10 +10,10 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
     // console.log(previewImgage);
   return ( 
     <group position={position} scale={[scale, scale, scale]}>
-      <group position={[0.05, -0.02, 0.01]}>
+      <group position={[0.04, -0.02, 0.01]}>
         <mesh >
           <planeGeometry args={[6.0, 4.66]} />
-          <meshStandardMaterial color="white" side={2} />
+          <meshStandardMaterial color="white"   emissive="white" emissiveIntensity={0.5} side={2} />
         </mesh>
         
         <mesh position={[-0.9, 1, 0.01]}>
