@@ -80,6 +80,12 @@ export function Cube({ setPreviewLink }){
   
   const links = [
     {
+      site: "NA",
+      image: "/images/newspaper.png",
+      imagePosition: [-0.064, -0.12, 0.1924],
+      imageSize: [4, 4.4],
+    },
+    {
       site: "https://reyuken.github.io/project-calculator/",
       image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-calculator/",
       description: "Responsive calculator for basic arithmetic operations.",
@@ -168,7 +174,6 @@ export function Cube({ setPreviewLink }){
       ]
     },
 
-    "", //8
     "", //9
     "", //10
     "", //11
@@ -217,7 +222,7 @@ export default function RotatableCube() {
     useFrame(() => {
     if (!dragging && groupRef.current) {
       // Auto-rotate when not dragging
-      groupRef.current.rotation.y += 0.005; // horizontal rotation speed
+      // groupRef.current.rotation.y += 0.005; // horizontal rotation speed
       // groupRef.current.rotation.x += 0.002; // vertical rotation speed
     }
   });
