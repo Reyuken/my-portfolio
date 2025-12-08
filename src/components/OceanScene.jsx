@@ -45,8 +45,8 @@ export default function OceanScene() {
 
   return (
     <Canvas camera={{ position: [0, 1, 10], fov: 55, near: 1, far: 20000 }}>
-      <pointLight decay={0} position={[100, 100, 100]} />
-      <pointLight decay={0.5} position={[-100, -100, -100]} />
+      <pointLight decay={0}  intensity={3} position={[100, 100, 100]} />
+      <pointLight decay={0.5}  intensity={20}position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
         <RotatableCube setPreviewLink={setPreviewLink} />
