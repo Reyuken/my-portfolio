@@ -5,6 +5,7 @@ import {useFrame } from "@react-three/fiber";
 import {  useTexture } from "@react-three/drei";
 import PreviewOverlay3D from "@/components/Screen";
 import * as THREE from "three";
+import Tree from "@/components/Tree";
 
 
 export function Box({ position, link, index, setPreviewLink }) {
@@ -38,9 +39,9 @@ export function Box({ position, link, index, setPreviewLink }) {
   };
 
   return (
-    <group ref={meshRef} position={position}>
+    <group ref={meshRef} position={position} scale={hovered ? 0.6 : 0.5}>
       <mesh
-        scale={hovered ? 0.6 : 0.5}
+        scale={1}
         onClick={(e) => {
           e.stopPropagation();
           handleClick();
@@ -63,6 +64,17 @@ export function Box({ position, link, index, setPreviewLink }) {
           />
         )}
       </mesh>
+        {(link?.hasTree ?? false) && (
+          <Tree
+            position={[0, 1, 0]}
+            scale={0.5}
+            hovered={hovered}              // scales together with box
+            onPointerOver={() => setHover(true)}
+            onPointerOut={() => setHover(false)}
+            onClick={handleClick}          // click triggers box link
+          />
+        )}
+
     </group>
   );
 }
@@ -215,6 +227,7 @@ export function Cube({ setPreviewLink }){
       image: "/images/newspaper.png",
       imagePosition: [-0.064, -0.12, 0.1924],
       imageSize: [4, 4.4],
+      hasTree: true,
     },//25
     "", //26
   ];
