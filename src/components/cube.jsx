@@ -40,7 +40,7 @@ export function Box({ position, link, index, setPreviewLink }) {
   return (
     <group ref={meshRef} position={position}>
       <mesh
-        scale={hovered ? 0.75 : 0.5}
+        scale={hovered ? 0.6 : 0.5}
         onClick={(e) => {
           e.stopPropagation();
           handleClick();
@@ -54,7 +54,7 @@ export function Box({ position, link, index, setPreviewLink }) {
           setHover(false);
         }}
       >
-        <boxGeometry args={[1.5, 1.5, 1.5]} />
+        <boxGeometry args={[2, 2, 2]} />
         {texture ? (
           <meshStandardMaterial map={texture} />
         ) : (
@@ -106,46 +106,6 @@ export function Cube({ setPreviewLink }){
   
   const links = [
     {
-      site: "NA",
-      image: "/images/newspaper.png",
-      imagePosition: [-0.064, -0.12, 0.1924],
-      imageSize: [4, 4.4],
-    },
-    {
-      site: "https://reyuken.github.io/project-calculator/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-calculator/",
-      description: "Responsive calculator for basic arithmetic operations.",
-      techStack: ["HTML", "CSS", "JavaScript"],
-      features: [
-        "Add, subtract, multiply, divide",
-        "Clear and backspace functions",
-        "Keyboard support"
-      ],
-      
-    },
-    {
-      site: "https://reyuken.github.io/project-etch-a-sketch/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-etch-a-sketch/",
-      description: "Interactive drawing grid where users can sketch using hover.",
-      techStack: ["HTML", "CSS", "JavaScript"],
-      features: [
-        "Adjustable grid size",
-        "Color and erase modes",
-        "Interactive drawing"
-      ]
-    },
-    {
-      site: "https://reyuken.github.io/project-tic-tac-toe/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-tic-tac-toe/",
-      description: "Classic 3x3 Tic Tac Toe game playable against another player.",
-      techStack: ["HTML", "CSS", "JavaScript"],
-      features: [
-        "2-player mode",
-        "Win detection",
-        "Reset game"
-      ]
-    },
-    {
       site: "https://reyuken.github.io/project-admin-dashboard/",
       image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-admin-dashboard/",
       description: "Static admin dashboard layout with widgets and sidebar.",
@@ -155,7 +115,7 @@ export function Cube({ setPreviewLink }){
         "Sidebar navigation",
         "Dashboard layout"
       ]
-    },
+    },//0
     {
       site: "https://reyuken.github.io/project-sign-up-form/",
       image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-sign-up-form/",
@@ -166,7 +126,7 @@ export function Cube({ setPreviewLink }){
         "Error messaging",
         "Responsive design"
       ]
-    },
+    },//1
     {
       site: "https://reyuken.github.io/project-restaurant-page/",
       image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-restaurant-page/",
@@ -177,7 +137,54 @@ export function Cube({ setPreviewLink }){
         "Modular JavaScript architecture",
         "Fully responsive"
       ]
-    },
+    },//2
+    "",//3
+    "",//4
+    "",//5
+    "",//6
+    "",//7
+    "",//8
+    "",//9
+    "", //10
+    "", //11
+    {
+      site: "https://reyuken.github.io/project-calculator/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-calculator/",
+      description: "Responsive calculator for basic arithmetic operations.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Add, subtract, multiply, divide",
+        "Clear and backspace functions",
+        "Keyboard support"
+      ],
+    },//12
+    {
+      site: "https://reyuken.github.io/project-etch-a-sketch/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-etch-a-sketch/",
+      description: "Interactive drawing grid where users can sketch using hover.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "Adjustable grid size",
+        "Color and erase modes",
+        "Interactive drawing"
+      ]
+    },//13
+    {
+      site: "https://reyuken.github.io/project-tic-tac-toe/",
+      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-tic-tac-toe/",
+      description: "Classic 3x3 Tic Tac Toe game playable against another player.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      features: [
+        "2-player mode",
+        "Win detection",
+        "Reset game"
+      ]
+    },//14
+    "", //15
+    "", //16
+    "", //17
+    "", //18
+    "", //19
     {
       site: "https://reyuken.github.io/project-weather-app/",
       image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-weather-app/?t=123456789",
@@ -188,7 +195,9 @@ export function Cube({ setPreviewLink }){
         "Search by city",
         "Responsive UI"
       ]
-    },
+    },//20
+    "", //21
+    "", //22
     {
       site: "https://reyuken.github.io/project-library/",
       image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-library/?t=123456789",
@@ -199,25 +208,14 @@ export function Cube({ setPreviewLink }){
         "Mark books as read/unread",
         "Store data locally"
       ]
-    },
-
-    "", //9
-    "", //10
-    "", //11
-    "", //12
-    "", //13
-    "", //14
-    "", //15
-    "", //16
-    "", //17
-    "", //18
-    "", //19
-    "", //20
-    "", //21
-    "", //22
-    "", //23
+    },//23
     "", //24
-    "", //25
+    {
+      site: "NA",
+      image: "/images/newspaper.png",
+      imagePosition: [-0.064, -0.12, 0.1924],
+      imageSize: [4, 4.4],
+    },//25
     "", //26
   ];
   useEffect(() => {
@@ -249,7 +247,7 @@ export default function RotatableCube() {
     useFrame(() => {
     if (!dragging && groupRef.current) {
       // Auto-rotate when not dragging
-      groupRef.current.rotation.y += 0.002; // horizontal rotation speed
+      // groupRef.current.rotation.y += 0.002; // horizontal rotation speed
       // groupRef.current.rotation.x += 0.002; // vertical rotation speed
     }
   });
