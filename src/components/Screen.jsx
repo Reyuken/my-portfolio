@@ -13,7 +13,7 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
       <group position={[0.04, -0.02, 0.016]}>
         <mesh >
           <planeGeometry args={[6.0, 4.66]} />
-          <meshStandardMaterial color="white"   emissive="white" emissiveIntensity={1} side={2} />
+          <meshStandardMaterial color="white" emissive="white" emissiveIntensity={1} side={2} />
         </mesh>
         
         <mesh position={previewLink.imagePosition ? [...previewLink.imagePosition] : [-0.9, 1, 0.01]}>

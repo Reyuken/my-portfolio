@@ -3,15 +3,29 @@
 import React, { useRef, useState, useEffect} from "react";
 import {useFrame } from "@react-three/fiber";
 import {  useTexture } from "@react-three/drei";
-import PreviewOverlay3D from "@/components/Screen"
+import PreviewOverlay3D from "@/components/Screen";
+import * as THREE from "three";
 
-export function Box({position, link, index, setPreviewLink}) {
+
+export function Box({ position, link, index, setPreviewLink }) {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
 
+  let texture = link
+    ? useTexture("/images/rocky_terrain_02_diff_4k.jpg")
+    : useTexture("/images/dry_ground_rocks_diff_4k.jpg");
+
+  // clone texture per cube to allow independent offset
+  texture = texture.clone();
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.offset.set(Math.random(), Math.random());
+  texture.center.set(0.5, 0.5);
+  texture.rotation = Math.random() * Math.PI * 2;
+  texture.repeat.set(Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5);
+
   const handleClick = () => {
     console.log("Clicked box number:", index);
-    if (link.site) {
+    if (link?.site) {
       console.log("Box link:", link);
       setPreviewLink(link);
     } else {
@@ -22,25 +36,33 @@ export function Box({position, link, index, setPreviewLink}) {
   return (
     <group ref={meshRef} position={position}>
       <mesh
-        scale={hovered ? 1 : 0.5}
+        scale={hovered ? 0.75 : 0.5}
         onClick={(e) => {
           e.stopPropagation();
-          handleClick();      
+          handleClick();
         }}
-        onPointerOver={(event) => {
-          event.stopPropagation(); 
-          if (link) {
-            setHover(true);
-          };
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          if (link) setHover(true);
         }}
-        onPointerOut={(event) => (event.stopPropagation(), setHover(false))}
+        onPointerOut={(e) => {
+          e.stopPropagation();
+          setHover(false);
+        }}
       >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={link? (hovered ? "hotpink": "blue" ): "orange"} />
+        <boxGeometry args={[1.5, 1.5, 1.5]} />
+        {texture ? (
+          <meshStandardMaterial map={texture} />
+        ) : (
+          <meshStandardMaterial
+            color={link ? (hovered ? "hotpink" : "blue") : "orange"}
+          />
+        )}
       </mesh>
     </group>
   );
 }
+
 
 export function Cube({ setPreviewLink }){
   const positions = [
@@ -94,7 +116,8 @@ export function Cube({ setPreviewLink }){
         "Add, subtract, multiply, divide",
         "Clear and backspace functions",
         "Keyboard support"
-      ]
+      ],
+      
     },
     {
       site: "https://reyuken.github.io/project-etch-a-sketch/",
@@ -217,12 +240,12 @@ export default function RotatableCube() {
   const [lastMouseY, setLastMouseY] = useState(0);
   const [previewLink, setPreviewLink] = useState(null);
 
-  const DRAG_DURATION = 500; // milliseconds
+  const DRAG_DURATION = 1000; // milliseconds
 
     useFrame(() => {
     if (!dragging && groupRef.current) {
       // Auto-rotate when not dragging
-      // groupRef.current.rotation.y += 0.005; // horizontal rotation speed
+      groupRef.current.rotation.y += 0.002; // horizontal rotation speed
       // groupRef.current.rotation.x += 0.002; // vertical rotation speed
     }
   });
