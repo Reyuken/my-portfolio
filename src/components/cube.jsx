@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect} from "react";
+import React, { useRef, useState, useEffect, useMemo} from "react";
 import {useFrame } from "@react-three/fiber";
 import {  useTexture } from "@react-three/drei";
 import PreviewOverlay3D from "@/components/Screen";
@@ -11,17 +11,21 @@ export function Box({ position, link, index, setPreviewLink }) {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
 
-  let texture = link
-    ? useTexture("/images/rocky_terrain_02_diff_4k.jpg")
-    : useTexture("/images/dry_ground_rocks_diff_4k.jpg");
+  const baseTexture = useTexture(
+    link
+      ? "/images/rocky_terrain_02_diff_4k.jpg"
+      : "/images/dry_ground_rocks_diff_4k.jpg"
+  );
+  const texture = useMemo(() => {
+    const tex = baseTexture.clone();
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.offset.set(Math.random(), Math.random());
+    tex.center.set(0.5, 0.5);
+    tex.rotation = Math.random() * Math.PI * 2;
+    tex.repeat.set(Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5);
+    return tex;
+  }, [baseTexture]);
 
-  // clone texture per cube to allow independent offset
-  texture = texture.clone();
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  texture.offset.set(Math.random(), Math.random());
-  texture.center.set(0.5, 0.5);
-  texture.rotation = Math.random() * Math.PI * 2;
-  texture.repeat.set(Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5);
 
   const handleClick = () => {
     console.log("Clicked box number:", index);
