@@ -39,7 +39,15 @@ function Ocean() {
 
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />;
 }
+function CameraClamp({ minY = 0.1 }) {
+  useFrame(({ camera }) => {
+    if (camera.position.y < minY) {
+      camera.position.y = minY; 
+    }
+  });
 
+  return null; // no JSX needed
+}
 export default function OceanScene() {
   const [previewLink, setPreviewLink] = React.useState(null);
   const groupRef = useRef();
@@ -54,6 +62,7 @@ export default function OceanScene() {
       camera={{ position: [0, 1, 10], fov: 55, near: 1, far: 20000 }}
       onCreated={({ camera }) => setCameraRef(camera)}
     >
+      <CameraClamp minY={0.4} /> {/* // keep camera above water */}
       <pointLight decay={0}  intensity={3} position={[100, 100, 100]} />
       <pointLight decay={0.5}  intensity={20}position={[-100, -100, -100]} />
       <Suspense fallback={null}>
@@ -78,11 +87,12 @@ export default function OceanScene() {
       <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} />
       <OrbitControls  
         minPolarAngle={Math.PI / 4}   // lowest vertical angle (tilt up)
-        maxPolarAngle={Math.PI / 1}   // highest vertical angle (tilt down)
+        maxPolarAngle={Math.PI / 1.5}   // highest vertical angle (tilt down)
         minAzimuthAngle={-Math.PI / 4} // left limit
         maxAzimuthAngle={Math.PI / 4}  // right limit
         enableZoom={true} 
         enablePan={false}
+        maxDistance={40}
         target={[0, 5, 0]}
         />
     </Canvas>
