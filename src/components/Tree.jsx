@@ -1,6 +1,4 @@
-// Tree.jsx
 "use client";
-import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 export default function Tree({ position = [0, 0, 0], scale = 1, hovered = false, onClick, onPointerOver, onPointerOut }) {
