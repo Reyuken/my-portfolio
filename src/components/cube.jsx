@@ -75,16 +75,17 @@ export function Box({ position, link, index, setPreviewLink }) {
           />
         )}
       </mesh>
-        {(link?.hasObject ?? false) && (
-          <Object
-            position={[0, 0.5, 0]}
-            scale={0.1}
-            hovered={hovered}              // scales together with box
-            onPointerOver={() => setHover(true)}
-            onPointerOut={() => setHover(false)}
-            onClick={handleClick}          // click triggers box link
-          />
-        )}
+      {link?.object && (
+        <Object
+          url={link.object}
+          position={[0, 0.5, 0]}     // height above the cube
+          scale={link.objectScale || 1} 
+          hovered={hovered}
+          onClick={handleClick}
+          onPointerOver={() => setHover(true)}
+          onPointerOut={() => setHover(false)}
+        />
+      )}
 
     </group>
   );
@@ -139,7 +140,9 @@ export function Cube({ setPreviewLink }){
         "Built REST API routes and integrated database operations",
         "Designed responsive and modular front-end interface with Tailwind CSS",
         "Guests can send messages via the contact page"
-      ]
+      ],
+      object: "/models/businesswebsiteLinkPlant.glb",
+      objectScale: 0.4,
     },
     {
       site: "https://reyuken.github.io/project-admin-dashboard/",
@@ -250,7 +253,8 @@ export function Cube({ setPreviewLink }){
       image: "/images/newspaper.png",
       imagePosition: [-0.064, -0.12, 0.1924],
       imageSize: [4, 4.4],
-      hasObject: true,
+      object: "/models/newspaperLinkTree.glb",
+      objectScale: 0.2,
     },//25
     "", //26
   ];
