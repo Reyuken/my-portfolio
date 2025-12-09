@@ -9,6 +9,7 @@ import RotatableCube from "@/components/cube";
 import TvGLB from "@/components/Television";
 import PreviewOverlay3D from "@/components/Screen";
 import RotationButtons from "@/components/Buttons";
+import Instructions from "@/components/Instructions";
 
 extend({ Water });
 
@@ -48,6 +49,7 @@ export default function OceanScene() {
 
   return (
     <>
+    <Instructions />
     <Canvas 
       camera={{ position: [0, 1, 10], fov: 55, near: 1, far: 20000 }}
       onCreated={({ camera }) => setCameraRef(camera)}
