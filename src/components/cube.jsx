@@ -37,11 +37,22 @@ export function Box({ position, link, index, setPreviewLink }) {
       console.log("No link assigned");
     }
   };
+  useFrame(() => {
+    if (!meshRef.current) return;
+
+    const target = hovered ? 1.2 : 1;        // scale when hovered
+    const current = meshRef.current.scale.x; // current scale
+
+    const lerpSpeed = 0.1;                   // smoothness (0–1)
+    const newScale = THREE.MathUtils.lerp(current, target, lerpSpeed);
+
+    meshRef.current.scale.set(newScale, newScale, newScale);
+  });
 
   return (
-    <group ref={meshRef} position={position} scale={hovered ? 0.6 : 0.5}>
+    <group ref={meshRef} position={position} >
       <mesh
-        scale={1}
+        scale={0.5}
         onClick={(e) => {
           e.stopPropagation();
           handleClick();
@@ -66,8 +77,8 @@ export function Box({ position, link, index, setPreviewLink }) {
       </mesh>
         {(link?.hasTree ?? false) && (
           <Tree
-            position={[0, 1, 0]}
-            scale={0.5}
+            position={[0, 0.5, 0]}
+            scale={0.3}
             hovered={hovered}              // scales together with box
             onPointerOver={() => setHover(true)}
             onPointerOut={() => setHover(false)}

@@ -10,10 +10,10 @@ export default function Tree({ position = [0, 0, 0], scale = 1, hovered = false,
     <primitive
       object={scene}
       position={position}
-      scale={hovered ? scale * 1.2 : scale}
+      scale={hovered ? scale * 1 : scale}
       onClick={(e) => { e.stopPropagation(); if (onClick) onClick(); }}
-      onPointerOver={(e) => { e.stopPropagation(); if (onPointerOver) onPointerOver(); }}
-      onPointerOut={(e) => { e.stopPropagation(); if (onPointerOut) onPointerOut(); }}
+      onPointerOver={(e) => {  if (onPointerOver) onPointerOver(); }}
+      onPointerOut={(e) => {  if (onPointerOut) onPointerOut(); }}
     />
   );
 }
