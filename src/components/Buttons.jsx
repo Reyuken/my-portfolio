@@ -16,8 +16,9 @@ export default function RotationDropdown({ showCube, setShowCube, groupRef, came
 
   const resetRotation = () => {
     if (groupRef?.current) {
-      groupRef.current.rotation.x = 0;
-      groupRef.current.rotation.y = 0;
+      groupRef.current.rotation.x = Math.PI / 6; // 30 degrees
+      groupRef.current.rotation.y = Math.PI / 4; // 45 degrees
+      groupRef.current.rotation.z = 0;           // 0 degrees
     }
   };
 
