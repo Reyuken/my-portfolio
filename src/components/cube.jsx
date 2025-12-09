@@ -130,6 +130,7 @@ export function Cube({ setPreviewLink }){
   
   const links = [
     {
+      title: "Business Website",
       site: "#",
       image: "/sites/businesswebsite.jpg",
       description: "Full-featured business website with user roles, job management, and integrated contact system. (Site currently under development)",
@@ -143,8 +144,9 @@ export function Cube({ setPreviewLink }){
       ],
       object: "/models/businesswebsiteLinkPlant.glb",
       objectScale: 0.4,
-    },
+    },//0
     {
+      title: "Admin Dashboard",
       site: "https://reyuken.github.io/project-admin-dashboard/",
       image: "/sites/admindashboard.jpg",
       description: "Static admin dashboard featuring widgets and a sidebar. A design project built as part of The Odin Project CSS course.",
@@ -156,6 +158,24 @@ export function Cube({ setPreviewLink }){
       ]
     },//1
     {
+      title: "3D Portfolio",
+      site: "#",
+      image: "/sites/3dportfolio.jpg",
+      description: "Interactive 3D portfolio showcasing projects in a navigable 3D environment with clickable objects and smooth camera controls.",
+      techStack: ["Next.js", "React Three Fiber", "Drei", "Three.js", "Tailwind CSS"],
+      features: [
+        "Projects displayed as clickable 3D boxes and objects",
+        "Hover effects for highlighting interactive elements",
+        "Smooth camera controls with OrbitControls",
+        "Dynamic textures and GLB models loaded from public folder",
+        "Responsive layout integrated with Next.js pages"
+      ],
+      object: "/models/portfolio3d.glb",
+      objectScale: 0.003,
+    },//2
+
+    {
+      title: "Sign-Up Form",
       site: "https://reyuken.github.io/project-sign-up-form/",
       image: "/sites/signupform.jpg",
       description: "Modern sign-up form with built-in validation for user registration. This project is a demonstration of concepts learned from the Intermediate HTML and CSS course of The Odin Project.",
@@ -165,8 +185,9 @@ export function Cube({ setPreviewLink }){
         "Native browser validation using required fields",
         "Purely front-end design", 
       ]
-    },//2
+    },//3
     {
+      title: "Restaurant Page",
       site: "https://reyuken.github.io/project-restaurant-page/",
       image: "/sites/restaurantpage.jpg",
       description: "Single-page restaurant website structured using ES6 modules and bundled with Webpack. This project primarily demonstrates the use of Webpack for module bundling, while also applying previously learned HTML, CSS, and JavaScript concepts.",
@@ -176,8 +197,7 @@ export function Cube({ setPreviewLink }){
         "Modular JavaScript architecture",
         "Bundled and optimized using Webpack",
       ]
-    },//3
-    "",//4
+    },//4
     "",//5
     "",//6
     "",//7
@@ -186,6 +206,7 @@ export function Cube({ setPreviewLink }){
     "", //10
     "", //11
     {
+      title: "Calculator",
       site: "https://reyuken.github.io/project-calculator/",
       image: "/sites/calculator.jpg",
       description: "Responsive calculator for basic arithmetic operations.",
@@ -197,6 +218,7 @@ export function Cube({ setPreviewLink }){
       ],
     },//12
     {
+      title: "Etch-A-Sketch",
       site: "https://reyuken.github.io/project-etch-a-sketch/",
       image: "/sites/etchsketch.jpg",
       description: "Interactive hover-based drawing grid, a project from The Odin Project to practice DOM manipulation.",
@@ -208,6 +230,7 @@ export function Cube({ setPreviewLink }){
       ]
     },//13
     {
+       title: "Tic Tac Toe",
       site: "https://reyuken.github.io/project-tic-tac-toe/",
       image: "/sites/tictactoe.jpg",
       description: "Classic 3x3 Tic Tac Toe game playable against another player.",
@@ -224,6 +247,7 @@ export function Cube({ setPreviewLink }){
     "", //18
     "", //19
     {
+      title: "Weather App",
       site: "https://reyuken.github.io/project-weather-app/",
       image: "/sites/weatherapp.jpg",
       description: "Weather app project from The Odin Project Fullstack course, demonstrating API usage to display real-time city weather data.",
@@ -237,6 +261,7 @@ export function Cube({ setPreviewLink }){
     "", //21
     "", //22
     {
+      title: "Digital Library",
       site: "https://reyuken.github.io/project-library/",
       image: "/sites/library.jpg",
       description: "Digital library project from The Odin Project, demonstrating the use of objects and constructors to manage book collections.",
@@ -249,6 +274,7 @@ export function Cube({ setPreviewLink }){
     },//23
     "", //24
     {
+      title: "",
       site: "NA",
       image: "/images/newspaper.png",
       imagePosition: [-0.064, -0.12, 0.1924],

@@ -24,7 +24,7 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
 
         {(previewLink.description || previewLink.techStack || previewLink.features) && (
           <Text
-            position={[-2.7, -0.2, 0.01]}
+            position={[-2.7, -0.1, 0.01]}
             fontSize={consistentFontSize}
             color="black"
             anchorX="left"
@@ -32,6 +32,7 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
             maxWidth={5.2}
             lineHeight={1.2}
           >
+            {previewLink.title ? `Title: ${previewLink.title}\n\n` : ""}
             {previewLink.description ? `Description:\n${previewLink.description}\n\n` : ""}
             {previewLink.techStack?.length ? `Tech Stack:\n${previewLink.techStack.join(" • ")}\n\n` : ""}
             {previewLink.features?.length 
@@ -41,7 +42,7 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
 
         {previewLink.site && previewLink.site !== "NA" && (
           <Text
-            position={[-2.7, -2, 0.01]}
+            position={[-2.7, -2.2, 0.01]}
             fontSize={consistentFontSize}
             color="blue"
             anchorX="left"
