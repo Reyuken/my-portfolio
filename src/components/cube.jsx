@@ -306,8 +306,8 @@ export default function RotatableCube({groupRef}) {
           const deltaX = e.clientX - lastMouseX;
           const deltaY = e.clientY - lastMouseY;
 
-          groupRef.current.rotation.y += deltaX * 0.01;
-          groupRef.current.rotation.x += deltaY * 0.01;
+          groupRef.current.rotation.y += deltaX * 0.003;
+          groupRef.current.rotation.x += deltaY * 0.003;
 
           setLastMouseX(e.clientX);
           setLastMouseY(e.clientY);
