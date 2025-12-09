@@ -1,7 +1,7 @@
 "use client";
 import { useGLTF } from "@react-three/drei";
 
-export default function Tree({ position = [0, 0, 0], scale = 1, hovered = false, onClick, onPointerOver, onPointerOut }) {
+export default function Object({ position = [0, 0, 0], scale = 1, hovered = false, onClick, onPointerOver, onPointerOut }) {
   const { scene } = useGLTF("/models/tree_3d_model_linden_tree.glb");
 
   return (

@@ -5,7 +5,7 @@ import {useFrame } from "@react-three/fiber";
 import {  useTexture } from "@react-three/drei";
 import PreviewOverlay3D from "@/components/Screen";
 import * as THREE from "three";
-import Tree from "@/components/Tree";
+import Object from "@/components/Object";
 
 
 export function Box({ position, link, index, setPreviewLink }) {
@@ -75,8 +75,8 @@ export function Box({ position, link, index, setPreviewLink }) {
           />
         )}
       </mesh>
-        {(link?.hasTree ?? false) && (
-          <Tree
+        {(link?.hasObject ?? false) && (
+          <Object
             position={[0, 0.5, 0]}
             scale={0.1}
             hovered={hovered}              // scales together with box
@@ -250,7 +250,7 @@ export function Cube({ setPreviewLink }){
       image: "/images/newspaper.png",
       imagePosition: [-0.064, -0.12, 0.1924],
       imageSize: [4, 4.4],
-      hasTree: true,
+      hasObject: true,
     },//25
     "", //26
   ];
