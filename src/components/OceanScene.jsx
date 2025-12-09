@@ -39,12 +39,11 @@ function Ocean() {
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />;
 }
 
-
-
 export default function OceanScene() {
   const [previewLink, setPreviewLink] = React.useState(null);
   const groupRef = useRef();
   const [cameraRef, setCameraRef] = useState(null);
+  
 
   return (
     <>
@@ -56,7 +55,7 @@ export default function OceanScene() {
       <pointLight decay={0.5}  intensity={20}position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
-        <RotatableCube groupRef={groupRef}/>
+        <RotatableCube groupRef={groupRef} />
 
         <TvGLB
           url="/models/tv.glb"

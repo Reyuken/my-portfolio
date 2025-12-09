@@ -20,6 +20,14 @@ export default function RotationDropdown({ groupRef,camera, step = 0.1, zoomStep
     }
   };
 
+  const resetCamera = () => {
+    if(camera){ 
+      camera.position.x = 0;
+      camera.position.y = 1;
+      camera.position.z = 10;
+    }
+   };
+
   const zoomIn = () => { if(camera) camera.position.z -= zoomStep; };
   const zoomOut = () => { if(camera) camera.position.z += zoomStep; };
   
@@ -56,9 +64,10 @@ export default function RotationDropdown({ groupRef,camera, step = 0.1, zoomStep
           <button style={buttonStyle} onClick={() => rotateX(-step)}>Rotate Up</button>
           <button style={buttonStyle} onClick={() => rotateY(step)}>Rotate Right</button>
           <button style={buttonStyle} onClick={() => rotateY(-step)}>Rotate Left</button>
-          <button style={buttonStyle} onClick={resetRotation}>Reset Rotation</button>
           <button style={buttonStyle} onClick={zoomIn}>Zoom In</button>
           <button style={buttonStyle} onClick={zoomOut}>Zoom Out</button>
+          <button style={buttonStyle} onClick={resetRotation}>Reset Rotation</button>
+          <button style={buttonStyle} onClick={resetCamera}>Reset Camera</button>
         </div>
       )}
     </div>
