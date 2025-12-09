@@ -271,8 +271,7 @@ export function Cube({ setPreviewLink }){
   );
 }
 
-export default function RotatableCube() {
-  const groupRef = useRef();
+export default function RotatableCube({groupRef}) {
   const [dragging, setDragging] = useState(false);
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);

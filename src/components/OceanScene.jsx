@@ -1,13 +1,14 @@
 "use client";
 
 import * as THREE from "three";
-import React, { Suspense, useRef, useMemo } from "react";
+import React, { Suspense, useRef, useMemo,useState } from "react";
 import { Canvas, extend, useThree, useLoader, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sky } from "@react-three/drei";
 import { Water } from "three-stdlib";
 import RotatableCube from "@/components/cube";
 import TvGLB from "@/components/Television";
 import PreviewOverlay3D from "@/components/Screen";
+import RotationButtons from "@/components/Buttons";
 
 extend({ Water });
 
@@ -42,14 +43,20 @@ function Ocean() {
 
 export default function OceanScene() {
   const [previewLink, setPreviewLink] = React.useState(null);
+  const groupRef = useRef();
+  const [cameraRef, setCameraRef] = useState(null);
 
   return (
-    <Canvas camera={{ position: [0, 1, 10], fov: 55, near: 1, far: 20000 }}>
+    <>
+    <Canvas 
+      camera={{ position: [0, 1, 10], fov: 55, near: 1, far: 20000 }}
+      onCreated={({ camera }) => setCameraRef(camera)}
+    >
       <pointLight decay={0}  intensity={3} position={[100, 100, 100]} />
       <pointLight decay={0.5}  intensity={20}position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
-        <RotatableCube setPreviewLink={setPreviewLink} />
+        <RotatableCube groupRef={groupRef}/>
 
         <TvGLB
           url="/models/tv.glb"
@@ -78,5 +85,7 @@ export default function OceanScene() {
         target={[0, 5, 0]}
         />
     </Canvas>
+    <RotationButtons groupRef={groupRef} step={0.5} camera={cameraRef}/>
+    </>
   );
 }
