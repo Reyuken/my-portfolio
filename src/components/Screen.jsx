@@ -6,8 +6,9 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
   if (!previewLink) return null;
     
     const previewTexture = useTexture(previewLink.image);
-    console.log(previewLink);
+    // console.log(previewLink);
     // console.log(previewImgage);
+    const consistentFontSize=0.11;
   return ( 
     <group position={position} scale={[scale, scale, scale]}>
       <group position={[0.04, -0.02, 0.016]}>
@@ -24,7 +25,7 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
         {(previewLink.description || previewLink.techStack || previewLink.features) && (
           <Text
             position={[-2.7, 0, 0.01]}
-            fontSize={0.15}
+            fontSize={consistentFontSize}
             color="black"
             anchorX="left"
             anchorY="top"
@@ -40,7 +41,7 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
         {previewLink.site && previewLink.site !== "NA" && (
           <Text
             position={[-2.7, -2, 0.01]}
-            fontSize={0.15}
+            fontSize={consistentFontSize}
             color="blue"
             anchorX="left"
             anchorY="middle"
