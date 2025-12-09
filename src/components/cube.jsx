@@ -292,6 +292,7 @@ export default function RotatableCube({groupRef, visible = true}) {
       ref={groupRef}
       visible={visible}
       position={[0, 2, 0]}
+      rotation={[Math.PI / 6, Math.PI / 4, 0]}
       onPointerDown={(e) => {
         e.stopPropagation();
         setDragging(true);
