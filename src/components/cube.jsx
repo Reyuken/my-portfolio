@@ -31,7 +31,7 @@ export function Box({ position, link, index, setPreviewLink }) {
   const handleClick = () => {
     console.log("Clicked box number:", index);
     if (link?.site) {
-      console.log("Box link:", link);
+      // console.log("Box link:", link);
       setPreviewLink(link);
     } else {
       console.log("No link assigned");
@@ -78,7 +78,7 @@ export function Box({ position, link, index, setPreviewLink }) {
         {(link?.hasTree ?? false) && (
           <Tree
             position={[0, 0.5, 0]}
-            scale={0.3}
+            scale={0.1}
             hovered={hovered}              // scales together with box
             onPointerOver={() => setHover(true)}
             onPointerOut={() => setHover(false)}
@@ -129,39 +129,51 @@ export function Cube({ setPreviewLink }){
   
   const links = [
     {
-      site: "https://reyuken.github.io/project-admin-dashboard/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-admin-dashboard/",
-      description: "Static admin dashboard layout with widgets and sidebar.",
-      techStack: ["HTML", "CSS", "JavaScript"],
+      site: "#",
+      image: "/sites/businesswebsite.jpg",
+      description: "Full-featured business website with user roles, job management, and integrated contact system. (Site currently under development)",
+      techStack: ["Next.js", "Node.js", "MySQL 8.0", "Tailwind CSS"],
       features: [
-        "Cards and statistics",
-        "Sidebar navigation",
-        "Dashboard layout"
+        "Developed a full-stack company website with user authentication and role-based access",
+        "Implemented end-to-end job application workflow for guests and admin management of postings",
+        "Built REST API routes and integrated database operations",
+        "Designed responsive and modular front-end interface with Tailwind CSS",
+        "Guests can send messages via the contact page"
       ]
-    },//0
+    },
     {
-      site: "https://reyuken.github.io/project-sign-up-form/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-sign-up-form/",
-      description: "Modern sign-up form with validation for user registration.",
-      techStack: ["HTML", "CSS", "JavaScript"],
+      site: "https://reyuken.github.io/project-admin-dashboard/",
+      image: "/sites/admindashboard.jpg",
+      description: "Static admin dashboard featuring widgets and a sidebar. A design project built as part of The Odin Project CSS course.",
+      techStack: ["HTML", "CSS"],
       features: [
-        "Live form validation",
-        "Error messaging",
-        "Responsive design"
+        "Static UI layout",
+        "Non-clickable widgets",
+        "Styled sidebar and cards"
       ]
     },//1
     {
-      site: "https://reyuken.github.io/project-restaurant-page/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-restaurant-page/",
-      description: "Single-page restaurant website built with modular JavaScript.",
-      techStack: ["HTML", "CSS", "JavaScript (ES6 Modules)"],
+      site: "https://reyuken.github.io/project-sign-up-form/",
+      image: "/sites/signupform.jpg",
+      description: "Modern sign-up form with built-in validation for user registration. This project is a demonstration of concepts learned from the Intermediate HTML and CSS course of The Odin Project.",
+      techStack: ["HTML", "CSS"],
       features: [
-        "Home, Menu, and Contact sections",
-        "Modular JavaScript architecture",
-        "Fully responsive"
+        "Styled and responsive form UI",
+        "Native browser validation using required fields",
+        "Purely front-end design", 
       ]
     },//2
-    "",//3
+    {
+      site: "https://reyuken.github.io/project-restaurant-page/",
+      image: "/sites/restaurantpage.jpg",
+      description: "Single-page restaurant website structured using ES6 modules and bundled with Webpack. This project primarily demonstrates the use of Webpack for module bundling, while also applying previously learned HTML, CSS, and JavaScript concepts.",
+      techStack: ["HTML", "CSS", "JavaScript (ES6 Modules)", "Webpack"],
+      features: [
+        "Functional tab navigation",
+        "Modular JavaScript architecture",
+        "Bundled and optimized using Webpack",
+      ]
+    },//3
     "",//4
     "",//5
     "",//6
@@ -172,7 +184,7 @@ export function Cube({ setPreviewLink }){
     "", //11
     {
       site: "https://reyuken.github.io/project-calculator/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-calculator/",
+      image: "/sites/calculator.jpg",
       description: "Responsive calculator for basic arithmetic operations.",
       techStack: ["HTML", "CSS", "JavaScript"],
       features: [
@@ -183,8 +195,8 @@ export function Cube({ setPreviewLink }){
     },//12
     {
       site: "https://reyuken.github.io/project-etch-a-sketch/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-etch-a-sketch/",
-      description: "Interactive drawing grid where users can sketch using hover.",
+      image: "/sites/etchsketch.jpg",
+      description: "Interactive hover-based drawing grid, a project from The Odin Project to practice DOM manipulation.",
       techStack: ["HTML", "CSS", "JavaScript"],
       features: [
         "Adjustable grid size",
@@ -194,7 +206,7 @@ export function Cube({ setPreviewLink }){
     },//13
     {
       site: "https://reyuken.github.io/project-tic-tac-toe/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-tic-tac-toe/",
+      image: "/sites/tictactoe.jpg",
       description: "Classic 3x3 Tic Tac Toe game playable against another player.",
       techStack: ["HTML", "CSS", "JavaScript"],
       features: [
@@ -210,8 +222,8 @@ export function Cube({ setPreviewLink }){
     "", //19
     {
       site: "https://reyuken.github.io/project-weather-app/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-weather-app/?t=123456789",
-      description: "Displays real-time weather data based on city search.",
+      image: "/sites/weatherapp.jpg",
+      description: "Weather app project from The Odin Project Fullstack course, demonstrating API usage to display real-time city weather data.",
       techStack: ["HTML", "CSS", "JavaScript", "Weather API"],
       features: [
         "Current temperature and conditions",
@@ -223,8 +235,8 @@ export function Cube({ setPreviewLink }){
     "", //22
     {
       site: "https://reyuken.github.io/project-library/",
-      image: "https://image.thum.io/get/width/600/jpeg/https://reyuken.github.io/project-library/?t=123456789",
-      description: "A simple digital library for storing books and managing collections.",
+      image: "/sites/library.jpg",
+      description: "Digital library project from The Odin Project, demonstrating the use of objects and constructors to manage book collections.",
       techStack: ["HTML", "CSS", "JavaScript"],
       features: [
         "Add, remove, and edit books",
