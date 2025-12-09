@@ -17,24 +17,25 @@ export default function PreviewOverlay3D({ previewLink, setPreviewLink, position
           <meshStandardMaterial color="white" emissive="white" emissiveIntensity={1} side={2} />
         </mesh>
         
-        <mesh position={previewLink.imagePosition ? [...previewLink.imagePosition] : [-0.9, 1, 0.01]}>
+        <mesh position={previewLink.imagePosition ? [...previewLink.imagePosition] : [0, 1, 0.01]}>
           <planeGeometry args={previewLink.imageSize ? [...previewLink.imageSize] :[3.6, 2]} />
           <meshBasicMaterial map={previewTexture} />
         </mesh>
 
         {(previewLink.description || previewLink.techStack || previewLink.features) && (
           <Text
-            position={[-2.7, 0, 0.01]}
+            position={[-2.7, -0.2, 0.01]}
             fontSize={consistentFontSize}
             color="black"
             anchorX="left"
             anchorY="top"
-            maxWidth={5}
+            maxWidth={5.2}
             lineHeight={1.2}
           >
             {previewLink.description ? `Description:\n${previewLink.description}\n\n` : ""}
             {previewLink.techStack?.length ? `Tech Stack:\n${previewLink.techStack.join(" • ")}\n\n` : ""}
-            {previewLink.features?.length ? `Features:\n${previewLink.features.join(", ")}` : ""}
+            {previewLink.features?.length 
+              ? `Features:\n${previewLink.features.map(f => `• ${f}`).join("\n")}` : ""}
           </Text>
         )}
 
