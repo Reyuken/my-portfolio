@@ -43,6 +43,7 @@ export default function OceanScene() {
   const [previewLink, setPreviewLink] = React.useState(null);
   const groupRef = useRef();
   const [cameraRef, setCameraRef] = useState(null);
+  const [showCube, setShowCube] = useState(true);
   
 
   return (
@@ -55,8 +56,7 @@ export default function OceanScene() {
       <pointLight decay={0.5}  intensity={20}position={[-100, -100, -100]} />
       <Suspense fallback={null}>
         <Ocean />
-        <RotatableCube groupRef={groupRef} />
-
+        <RotatableCube visible={showCube} groupRef={groupRef} />
         <TvGLB
           url="/models/tv.glb"
           position={[0, -4, -40]}
@@ -84,7 +84,7 @@ export default function OceanScene() {
         target={[0, 5, 0]}
         />
     </Canvas>
-    <RotationButtons groupRef={groupRef} step={0.5} camera={cameraRef}/>
+    <RotationButtons showCube={showCube} setShowCube={setShowCube} groupRef={groupRef} step={0.5} camera={cameraRef}/>
     </>
   );
 }

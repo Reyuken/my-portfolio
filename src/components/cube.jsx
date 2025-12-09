@@ -271,7 +271,7 @@ export function Cube({ setPreviewLink }){
   );
 }
 
-export default function RotatableCube({groupRef}) {
+export default function RotatableCube({groupRef, visible = true}) {
   const [dragging, setDragging] = useState(false);
   const [lastMouseX, setLastMouseX] = useState(0);
   const [lastMouseY, setLastMouseY] = useState(0);
@@ -290,6 +290,7 @@ export default function RotatableCube({groupRef}) {
     <>
     <group
       ref={groupRef}
+      visible={visible}
       position={[0, 2, 0]}
       onPointerDown={(e) => {
         e.stopPropagation();
