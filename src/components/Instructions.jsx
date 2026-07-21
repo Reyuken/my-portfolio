@@ -25,6 +25,17 @@ export default function Instructions() {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex flex-col items-center justify-center text-white p-8">
+          <p className="text-center text-yellow-400 font-medium mb-6">
+            View my latest portfolio with updated projects.{" "}
+            <a
+              href="https://reyuken.github.io/unabiaray-webportfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-yellow-300"
+            >
+              Click here to visit the updated portfolio.
+            </a>
+          </p>
           <h1 className="text-3xl font-bold mb-6 text-center">
             Website Instructions
           </h1>
@@ -36,7 +47,7 @@ export default function Instructions() {
             <li>Check out the control settings in the upper-left corner for additional options.</li>
             <li>These instructions can always be accessed from the upper-right corner of the site.</li>
             <li className="mt-4 text-sm text-gray-400">
-                ⚠️ Works best on desktop browsers with a mouse.
+              ⚠️ Works best on desktop browsers with a mouse.
             </li>
           </ul>
 
